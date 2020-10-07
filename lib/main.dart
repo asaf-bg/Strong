@@ -1,7 +1,11 @@
 
+import 'dart:developer';
+import 'dart:math';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:my_3_app/exercise.dart';
-import 'exercise.dart';
+import 'package:flutter/services.dart';
+import 'Ex.dart';
 
 
 
@@ -20,6 +24,27 @@ void main() {
       '/third': (context) => thirdscreen(),
 
     },
+    theme: ThemeData(
+      // Define the default brightness and colors.
+      brightness: Brightness.dark,
+      primaryColor: Colors.red,
+      accentColor: Colors.orangeAccent.withAlpha(90),
+
+      // Define the default font family.
+      fontFamily: 'Raleway',
+
+      // Define the default TextTheme. Use this to specify the default
+      // text styling for headlines, titles, bodies of text, and more.
+      textTheme: TextTheme(
+        headline1: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+        headline4: TextStyle(color: Colors.orangeAccent,fontSize: 20,fontWeight: FontWeight.bold,),
+
+        headline5: TextStyle(color: Colors.red,fontSize: 20,fontWeight: FontWeight.bold,),
+        headline6: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold,),
+        bodyText2: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+      ),
+    ),
+
   ));
 }
 
@@ -41,7 +66,7 @@ class FirstScreen extends StatelessWidget {
           padding: const EdgeInsets.only(top: 10.0, bottom: 10.0, left :5 , right :5),
           splashColor: Colors.orangeAccent.withAlpha(90),
 
-          child: const Text('A' ,style: TextStyle(fontSize: 30, color: Colors.white)),
+          child: const Text('A' ,style: TextStyle(fontSize: 30, color: Colors.white,fontFamily: 'Raleway')),
           onPressed: ()  {
             Navigator.pushNamed(context, '/second');
 
@@ -125,9 +150,21 @@ class FirstScreen extends StatelessWidget {
 }
 
 class SecondScreen extends StatelessWidget {
-  // _setA(){
-  //   var bench = ￿￿exercise("bench",[1,2,3]);
-  // }
+
+  static var ex1 = new Ex(-1,"",0,0,0,DateTime.now(), DateTime.now());
+  static var ex2 = new Ex(-1,"",0,0,0,DateTime.now(), DateTime.now());
+  static var ex3 = new Ex(-1,"",0,0,0,DateTime.now(), DateTime.now());
+  static var ex4 = new Ex(-1,"",0,0,0,DateTime.now(), DateTime.now());
+  static var ex5 = new Ex(-1,"",0,0,0,DateTime.now(), DateTime.now());
+  static var ex6 = new Ex(-1,"",0,0,0,DateTime.now(), DateTime.now());
+  static var ex7 = new Ex(-1,"",0,0,0,DateTime.now(), DateTime.now());
+  static var ex8 = new Ex(-1,"",0,0,0,DateTime.now(), DateTime.now());
+  static var ex9 = new Ex(-1,"",0,0,0,DateTime.now(), DateTime.now());
+  static var ex10 = new Ex(-1,"",0,0,0,DateTime.now(), DateTime.now());
+
+
+
+
   _getBackgroundColor() {
     return Container(
       color: Colors.black,
@@ -137,128 +174,829 @@ class SecondScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Chest Workout'),backgroundColor: Colors.red,
+      backgroundColor: Colors.black,
+
+      appBar: AppBar(title: const Text('Back Workout'),backgroundColor: Colors.red,
 
       ),
+
       body: Center(
-          child: Stack(
+
+          child: Column(
               children:[
                 _getBackgroundColor(),
 
+                Row( crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+
+                    children: [
+                      Expanded(
+                        child: Text('Exercise',style:Theme.of(context).textTheme.headline4,textAlign: TextAlign.center,
+
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: Text('Set 1',style:Theme.of(context).textTheme.headline4,textAlign: TextAlign.center,
+
+                        ),                  ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: Text('Set 2',style:Theme.of(context).textTheme.headline4,textAlign: TextAlign.center,
+
+                        ),                  ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: Text('Set 3',style:Theme.of(context).textTheme.headline4,textAlign: TextAlign.center,
+
+                        ),                  ),
 
 
-                // TextField(
-                //         style: TextStyle(color: Colors.white),
-                //         obscureText: false,
-                //       decoration: InputDecoration(
-                //         fillColor: Colors.white,
-                //         hintText: "Enter your email",
-                //         border: OutlineInputBorder(),
-                //         labelText: 'Name',
-                //         labelStyle: new TextStyle(
-                //             color: const Color(0xFFFFFFFF)
-                //
-                //         ),
-                //     )
-                //
-                // ),
-                Spacer(),
+                    ]),
 
-                Table(
-//          defaultColumnWidth:
-//              FixedColumnWidth(MediaQuery.of(context).size.width / 3),
-                  border: TableBorder.symmetric(
-                      inside: BorderSide(width: 3, color: Colors.yellow),
-                      outside: BorderSide(width: 1)),
-                  defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-          children: [
-            TableRow(children: [
-              TableCell(child: Center(child: Text('Exercise',style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold)))),
-              TableCell(
-                child: Center(child: Text('Set 1',style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold)))
-              ),
-              TableCell(child: Center(child: Text('Set 2',style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold)))),
-              TableCell(child: Center(child: Text('Set 3',style: TextStyle(color: Colors.red,fontSize: 24,fontWeight: FontWeight.bold)))),
-            ]),
-            TableRow(children: [
-              TableCell(
-                child: Center(child: Text('Chest Press',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold),textAlign: TextAlign.center)),
-                verticalAlignment: TableCellVerticalAlignment.bottom,
-              ),
-              TableCell(
-                verticalAlignment: TableCellVerticalAlignment.middle,
-                child: Center(child: Text('20',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold))),
-              ),
-              TableCell(
-                verticalAlignment: TableCellVerticalAlignment.middle,
-                child: Center(child: Text('30',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold))),
-              ),
-              TableCell(
-                child: Center(child: Text('40',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold))),
-                verticalAlignment: TableCellVerticalAlignment.middle,
-              ),
-            ]),
-            TableRow(children: [
-              TableCell(
-                child: Center(child: Text('Flys',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold))),
-                verticalAlignment: TableCellVerticalAlignment.bottom,
-              ),
-              TableCell(
-                verticalAlignment: TableCellVerticalAlignment.middle,
-                child: Center(child: Text('10',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold))),
-              ),
-              TableCell(
-                verticalAlignment: TableCellVerticalAlignment.middle,
-                child: Center(child: Text('10',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold))),
-              ),
-              TableCell(
-                child: Center(child: Text('10',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold))),
-                verticalAlignment: TableCellVerticalAlignment.middle,
-              ),
-            ]),
-            TableRow(children: [
-              TableCell(
-                child: Center(child: Text('M press',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold))),
-                verticalAlignment: TableCellVerticalAlignment.bottom,
-              ),
-              TableCell(
-                verticalAlignment: TableCellVerticalAlignment.middle,
-                child: Center(child: Text('1',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold))),
-              ),
-              TableCell(
-                verticalAlignment: TableCellVerticalAlignment.middle,
-                child: Center(child: Text('2',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold))),
-              ),
-              TableCell(
-                child: Center(child: Text('3',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold))),
-                verticalAlignment: TableCellVerticalAlignment.middle,
-              ),
-            ]),
-            TableRow(children: [
-              TableCell(
-                child: Center(child: Text('Curls',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold))),
-                verticalAlignment: TableCellVerticalAlignment.bottom,
-              ),
-              TableCell(
-                verticalAlignment: TableCellVerticalAlignment.middle,
-                child: Center(child: Text('15',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold))),
-              ),
-              TableCell(
-                verticalAlignment: TableCellVerticalAlignment.middle,
-                child: Center(child: Text('16',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold))),
-              ),
-              TableCell(
-                child: Center(child: Text('20',style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.bold))),
-                verticalAlignment: TableCellVerticalAlignment.middle,
-              ),
-            ]),
+                Row(crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText:ex1.id ==-1 ? "":ex1.name,
+                            // hintStyle: TextStyle(fontWeight: FontWeight.w300, color: Colors.red)
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+                          onChanged: (text) {
+                            ex1.name = text;
+                            ex1.id=0;
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex1.set1 == 0 ?"":ex1.set1.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex1.UpdateSet(1,val);
+
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex1.set2 == 0 ?"":ex1.set2.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex1.UpdateSet(2,val);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex1.set3 == 0 ?"":ex1.set3.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex1.UpdateSet(3,val);
+                          },
+                        ),
+                      ),
 
 
-          ],
-        ),
+                    ]),
+                Row(crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
 
-                Spacer(),
-                Spacer(),
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText:ex2.id ==-1 ? "":ex2.name,
+                            // hintStyle: TextStyle(fontWeight: FontWeight.w300, color: Colors.red)
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+                          onChanged: (text) {
+                            ex2.name = text;
+                            ex2.id=0;
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex2.set1 == 0 ?"":ex2.set1.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex2.UpdateSet(1,val);
+
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex2.set2 == 0 ?"":ex2.set2.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex2.UpdateSet(2,val);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex2.set3 == 0 ?"":ex2.set3.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex2.UpdateSet(3,val);
+                          },
+                        ),
+                      ),
+
+
+                    ]),
+                Row(crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText:ex3.id ==-1 ? "":ex3.name,
+                            // hintStyle: TextStyle(fontWeight: FontWeight.w300, color: Colors.red)
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+                          onChanged: (text) {
+                            ex3.name = text;
+                            ex3.id=0;
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex3.set1 == 0 ?"":ex3.set1.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex3.UpdateSet(2,val);
+
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex3.set2 == 0 ?"":ex3.set2.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex2.UpdateSet(2,val);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex3.set3 == 0 ?"":ex3.set3.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex3.UpdateSet(3,val);
+                          },
+                        ),
+                      ),
+
+
+                    ]),
+                Row(crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText:ex4.id ==-1 ? "":ex4.name,
+                            // hintStyle: TextStyle(fontWeight: FontWeight.w300, color: Colors.red)
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+                          onChanged: (text) {
+                            ex4.name = text;
+                            ex4.id=0;
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex4.set1 == 0 ?"":ex4.set1.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex4.UpdateSet(2,val);
+
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex4.set2 == 0 ?"":ex4.set2.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex2.UpdateSet(2,val);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex4.set3 == 0 ?"":ex4.set3.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex4.UpdateSet(3,val);
+                          },
+                        ),
+                      ),
+
+
+                    ]),
+                Row(crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText:ex5.id ==-1 ? "":ex5.name,
+                            // hintStyle: TextStyle(fontWeight: FontWeight.w300, color: Colors.red)
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+                          onChanged: (text) {
+                            ex5.name = text;
+                            ex5.id=0;
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex5.set1 == 0 ?"":ex5.set1.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex5.UpdateSet(2,val);
+
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex5.set2 == 0 ?"":ex5.set2.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex2.UpdateSet(2,val);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex5.set3 == 0 ?"":ex5.set3.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex5.UpdateSet(3,val);
+                          },
+                        ),
+                      ),
+
+
+                    ]),
+                Row(crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText:ex6.id ==-1 ? "":ex6.name,
+                            // hintStyle: TextStyle(fontWeight: FontWeight.w300, color: Colors.red)
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+                          onChanged: (text) {
+                            ex6.name = text;
+                            ex6.id=0;
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex6.set1 == 0 ?"":ex6.set1.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex6.UpdateSet(2,val);
+
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex6.set2 == 0 ?"":ex6.set2.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex2.UpdateSet(2,val);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex6.set3 == 0 ?"":ex6.set3.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex6.UpdateSet(3,val);
+                          },
+                        ),
+                      ),
+
+
+                    ]),
+                Row(crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText:ex7.id ==-1 ? "":ex7.name,
+                            // hintStyle: TextStyle(fontWeight: FontWeight.w300, color: Colors.red)
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+                          onChanged: (text) {
+                            ex7.name = text;
+                            ex7.id=0;
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex7.set1 == 0 ?"":ex7.set1.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex7.UpdateSet(2,val);
+
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex7.set2 == 0 ?"":ex6.set2.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex2.UpdateSet(2,val);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex7.set3 == 0 ?"":ex7.set3.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex7.UpdateSet(3,val);
+                          },
+                        ),
+                      ),
+
+
+                    ]),
+                Row(crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText:ex8.id ==-1 ? "":ex8.name,
+                            // hintStyle: TextStyle(fontWeight: FontWeight.w300, color: Colors.red)
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+                          onChanged: (text) {
+                            ex8.name = text;
+                            ex8.id=0;
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex8.set1 == 0 ?"":ex8.set1.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex8.UpdateSet(2,val);
+
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex8.set2 == 0 ?"":ex6.set2.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex2.UpdateSet(2,val);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex8.set3 == 0 ?"":ex8.set3.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex8.UpdateSet(3,val);
+                          },
+                        ),
+                      ),
+
+
+                    ]),
+                Row(crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText:ex9.id ==-1 ? "":ex9.name,
+                            // hintStyle: TextStyle(fontWeight: FontWeight.w300, color: Colors.red)
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+                          onChanged: (text) {
+                            ex9.name = text;
+                            ex9.id=0;
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex9.set1 == 0 ?"":ex9.set1.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex9.UpdateSet(2,val);
+
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex9.set2 == 0 ?"":ex6.set2.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex2.UpdateSet(2,val);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex9.set3 == 0 ?"":ex9.set3.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex9.UpdateSet(3,val);
+                          },
+                        ),
+                      ),
+
+
+                    ]),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -274,8 +1012,24 @@ class SecondScreen extends StatelessWidget {
 
     );
   }
+
 }
 class thirdscreen extends StatelessWidget {
+  //List<Ex> workout=  List<Ex>();
+  static var ex1 = new Ex(-1,"",0,0,0,DateTime.now(), DateTime.now());
+  static var ex2 = new Ex(-1,"",0,0,0,DateTime.now(), DateTime.now());
+  static var ex3 = new Ex(-1,"",0,0,0,DateTime.now(), DateTime.now());
+  static var ex4 = new Ex(-1,"",0,0,0,DateTime.now(), DateTime.now());
+  static var ex5 = new Ex(-1,"",0,0,0,DateTime.now(), DateTime.now());
+  static var ex6 = new Ex(-1,"",0,0,0,DateTime.now(), DateTime.now());
+  static var ex7 = new Ex(-1,"",0,0,0,DateTime.now(), DateTime.now());
+  static var ex8 = new Ex(-1,"",0,0,0,DateTime.now(), DateTime.now());
+  static var ex9 = new Ex(-1,"",0,0,0,DateTime.now(), DateTime.now());
+  static var ex10 = new Ex(-1,"",0,0,0,DateTime.now(), DateTime.now());
+
+
+
+
   _getBackgroundColor() {
     return Container(
       color: Colors.black,
@@ -285,13 +1039,831 @@ class thirdscreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
+
       appBar: AppBar(title: const Text('Back Workout'),backgroundColor: Colors.orangeAccent,
 
       ),
+
       body: Center(
-          child: Stack(
+
+          child: Column(
               children:[
                 _getBackgroundColor(),
+
+                Row( crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+
+                    children: [
+                  Expanded(
+                    child: Text('Exercise',style:Theme.of(context).textTheme.headline5,textAlign: TextAlign.center,
+
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    child: Text('Set 1',style:Theme.of(context).textTheme.headline5,textAlign: TextAlign.center,
+
+                    ),                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    child: Text('Set 2',style:Theme.of(context).textTheme.headline5,textAlign: TextAlign.center,
+
+                    ),                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    child: Text('Set 3',style:Theme.of(context).textTheme.headline5,textAlign: TextAlign.center,
+
+                    ),                  ),
+
+
+                ]),
+
+                Row(crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+
+                    children: [
+                  Expanded(
+                    child: TextField(
+                      decoration: InputDecoration(
+                          hintText:ex1.id ==-1 ? "":ex1.name,
+                         // hintStyle: TextStyle(fontWeight: FontWeight.w300, color: Colors.red)
+                          hintStyle: Theme.of(context).textTheme.headline6,
+                      ),
+                      onChanged: (text) {
+                        ex1.name = text;
+                        ex1.id=0;
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    child: TextField(
+                      decoration: InputDecoration(
+                          hintText: ex1.set1 == 0 ?"":ex1.set1.toString(),
+                        hintStyle: Theme.of(context).textTheme.headline6,
+                      ),
+
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                      onChanged: (num) {
+                        var val = int.tryParse(num);
+                        assert(val is int);
+                        if (val == null)
+                          val = 0;
+                        ex1.UpdateSet(1,val);
+
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    child: TextField(
+                      decoration: InputDecoration(
+                          hintText: ex1.set2 == 0 ?"":ex1.set2.toString(),
+                        hintStyle: Theme.of(context).textTheme.headline6,
+                      ),
+
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                      onChanged: (num) {
+                        var val = int.tryParse(num);
+                        assert(val is int);
+                        if (val == null)
+                          val = 0;
+                        ex1.UpdateSet(2,val);
+                      },
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    child: TextField(
+                      decoration: InputDecoration(
+                          hintText: ex1.set3 == 0 ?"":ex1.set3.toString(),
+                        hintStyle: Theme.of(context).textTheme.headline6,
+                      ),
+
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                      onChanged: (num) {
+                        var val = int.tryParse(num);
+                        assert(val is int);
+                        if (val == null)
+                          val = 0;
+                        ex1.UpdateSet(3,val);
+                      },
+                    ),
+                  ),
+
+
+                ]),
+                Row(crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText:ex2.id ==-1 ? "":ex2.name,
+                            // hintStyle: TextStyle(fontWeight: FontWeight.w300, color: Colors.red)
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+                          onChanged: (text) {
+                            ex2.name = text;
+                            ex2.id=0;
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex2.set1 == 0 ?"":ex2.set1.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex2.UpdateSet(1,val);
+
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex2.set2 == 0 ?"":ex2.set2.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex2.UpdateSet(2,val);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex2.set3 == 0 ?"":ex2.set3.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex2.UpdateSet(3,val);
+                          },
+                        ),
+                      ),
+
+
+                    ]),
+                Row(crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText:ex3.id ==-1 ? "":ex3.name,
+                            // hintStyle: TextStyle(fontWeight: FontWeight.w300, color: Colors.red)
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+                          onChanged: (text) {
+                            ex3.name = text;
+                            ex3.id=0;
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex3.set1 == 0 ?"":ex3.set1.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex3.UpdateSet(2,val);
+
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex3.set2 == 0 ?"":ex3.set2.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex2.UpdateSet(2,val);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex3.set3 == 0 ?"":ex3.set3.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex3.UpdateSet(3,val);
+                          },
+                        ),
+                      ),
+
+
+                    ]),
+                Row(crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText:ex4.id ==-1 ? "":ex4.name,
+                            // hintStyle: TextStyle(fontWeight: FontWeight.w300, color: Colors.red)
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+                          onChanged: (text) {
+                            ex4.name = text;
+                            ex4.id=0;
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex4.set1 == 0 ?"":ex4.set1.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex4.UpdateSet(2,val);
+
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex4.set2 == 0 ?"":ex4.set2.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex2.UpdateSet(2,val);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex4.set3 == 0 ?"":ex4.set3.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex4.UpdateSet(3,val);
+                          },
+                        ),
+                      ),
+
+
+                    ]),
+                Row(crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText:ex5.id ==-1 ? "":ex5.name,
+                            // hintStyle: TextStyle(fontWeight: FontWeight.w300, color: Colors.red)
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+                          onChanged: (text) {
+                            ex5.name = text;
+                            ex5.id=0;
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex5.set1 == 0 ?"":ex5.set1.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex5.UpdateSet(2,val);
+
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex5.set2 == 0 ?"":ex5.set2.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex2.UpdateSet(2,val);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex5.set3 == 0 ?"":ex5.set3.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex5.UpdateSet(3,val);
+                          },
+                        ),
+                      ),
+
+
+                    ]),
+                Row(crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText:ex6.id ==-1 ? "":ex6.name,
+                            // hintStyle: TextStyle(fontWeight: FontWeight.w300, color: Colors.red)
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+                          onChanged: (text) {
+                            ex6.name = text;
+                            ex6.id=0;
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex6.set1 == 0 ?"":ex6.set1.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex6.UpdateSet(2,val);
+
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex6.set2 == 0 ?"":ex6.set2.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex2.UpdateSet(2,val);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex6.set3 == 0 ?"":ex6.set3.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex6.UpdateSet(3,val);
+                          },
+                        ),
+                      ),
+
+
+                    ]),
+                Row(crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText:ex7.id ==-1 ? "":ex7.name,
+                            // hintStyle: TextStyle(fontWeight: FontWeight.w300, color: Colors.red)
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+                          onChanged: (text) {
+                            ex7.name = text;
+                            ex7.id=0;
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex7.set1 == 0 ?"":ex7.set1.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex7.UpdateSet(2,val);
+
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex7.set2 == 0 ?"":ex6.set2.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex2.UpdateSet(2,val);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex7.set3 == 0 ?"":ex7.set3.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex7.UpdateSet(3,val);
+                          },
+                        ),
+                      ),
+
+
+                    ]),
+                Row(crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText:ex8.id ==-1 ? "":ex8.name,
+                            // hintStyle: TextStyle(fontWeight: FontWeight.w300, color: Colors.red)
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+                          onChanged: (text) {
+                            ex8.name = text;
+                            ex8.id=0;
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex8.set1 == 0 ?"":ex8.set1.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex8.UpdateSet(2,val);
+
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex8.set2 == 0 ?"":ex6.set2.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex2.UpdateSet(2,val);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex8.set3 == 0 ?"":ex8.set3.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex8.UpdateSet(3,val);
+                          },
+                        ),
+                      ),
+
+
+                    ]),
+                Row(crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText:ex9.id ==-1 ? "":ex9.name,
+                            // hintStyle: TextStyle(fontWeight: FontWeight.w300, color: Colors.red)
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+                          onChanged: (text) {
+                            ex9.name = text;
+                            ex9.id=0;
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex9.set1 == 0 ?"":ex9.set1.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex9.UpdateSet(2,val);
+
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex9.set2 == 0 ?"":ex6.set2.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex2.UpdateSet(2,val);
+                          },
+                        ),
+                      ),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      Expanded(
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: ex9.set3 == 0 ?"":ex9.set3.toString(),
+                            hintStyle: Theme.of(context).textTheme.headline6,
+                          ),
+
+                          keyboardType: TextInputType.number,
+                          inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
+                          onChanged: (num) {
+                            var val = int.tryParse(num);
+                            assert(val is int);
+                            if (val == null)
+                              val = 0;
+                            ex9.UpdateSet(3,val);
+                          },
+                        ),
+                      ),
+
+
+                    ]),
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
